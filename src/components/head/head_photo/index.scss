@@ -1,0 +1,29 @@
+.headphoto{
+  position: relative;
+.Img{
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    overflow: hidden;
+    img{
+      width:100%;
+    }
+  }
+  .H_menu{
+    position: absolute;
+    background: white;
+    width: 160px;
+    border-radius: 4px;
+    box-shadow: 0 5px 20px rgba(26,26,26,.1);
+    left: 50%;
+    top: 50px;
+    transform: translate(-50%,0);
+    padding: 10px;
+    .H_iconTop{
+
+    }
+    .adjoint{
+
+    }
+  }
+}

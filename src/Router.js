@@ -8,7 +8,7 @@ import Comment from './pages/comment.jsx'
 function router(){
     return(
         <Router>
-           <Route path='/home' component={Home}></Route>
+           <Route path='/' component={Home}></Route>
            <Route path='/Login' component={Login}></Route>
            <Route path='/list/:id' component={List}></Route>
            <Route path='/content/:id' component={Content}></Route>
