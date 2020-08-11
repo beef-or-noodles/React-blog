@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   height: 34px;
+  position: relative;
   input{
     color: #1a1a1a;
     height: 24px;
@@ -14,14 +15,10 @@
     border: none;
     background-color: var(--background-color);
     transition: all .3s ease;
-    width: 160px;
   }
   input::placeholder {
     font-size: 14px;
     color:var(--default-text);
-  }
-  input:focus{
-    width: 230px;
   }
   .btn{
     width: 30px;
@@ -33,6 +30,65 @@
     background: inherit;
     &:hover{
       cursor: pointer;
+    }
+  }
+  .searchBox{
+    position: absolute;
+    width: 282px;
+    background-color: white;
+    left: 0;
+    top: 40px;
+    border-radius: 4px;
+    padding: 10px 0;
+    box-shadow: 0 5px 20px rgba(26,26,26,.1);
+    .S_top{
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 6px;
+      font-size: 14px;
+      color: var(--default-text);
+      margin: 0 15px;
+    }
+    ul{
+      margin-bottom: 10px;
+      li{
+        font-size: 14px;
+        padding: 10px 15px;
+        a{
+          color: var(--active-text);
+        }
+        &:hover{
+          background-color: var(--background-color);
+          cursor: pointer;
+        }
+        i{
+          color: var(--message-color);
+          margin-left: 5px;
+        }
+      }
+    }
+    .H_history{
+      .S_top{
+        &>span{
+          float: right;
+          i{
+            margin-right: 5px;
+          }
+          &:hover{
+            color: var(--message-color);
+            cursor: pointer;
+          }
+        }
+      }
+      li{
+        i{
+          display: none;
+          float: right;
+          color: var(--active-text);
+        }
+        &:hover{
+          i{display: block}
+        }
+      }
     }
   }
 }

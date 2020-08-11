@@ -9,16 +9,19 @@ export default class Head extends React.Component{
         this.state = {
             messageShow:false,
             photoShow:false,
-            messageNum:3,
+            searchShow:false,
+            messageNum:3
         }
         this.messageClick = this.messageClick.bind(this)
         this.photoClick = this.photoClick.bind(this)
+        this.searchClick = this.searchClick.bind(this)
     }
     componentDidMount() {
         document.onclick = ()=>{
             this.setState({
                 messageShow:false,
-                photoShow:false
+                photoShow:false,
+                searchShow:false,
             })
         }
     }
@@ -28,14 +31,24 @@ export default class Head extends React.Component{
         this.setState({
             messageShow:true,
             photoShow:false,
-            messageNum:0,
+            searchShow:false,
+            messageNum:0
         })
+    }
+    searchClick(e){
+        e.nativeEvent.stopImmediatePropagation()
+            this.setState({
+                searchShow:true,
+                messageShow:false,
+                photoShow:false,
+            })
     }
     photoClick(e){
         e.nativeEvent.stopImmediatePropagation()
         this.setState({
             photoShow:true,
-            messageShow:false
+            messageShow:false,
+            searchShow:false,
         })
     }
     render(){
@@ -51,7 +64,7 @@ export default class Head extends React.Component{
                             <li> <a href='/list/1'>学习计划</a></li>
                             <li> <a href='/comment'>留言板</a></li>
                         </ul>
-                        <Search></Search>
+                        <Search onChange={this.searchClick} isShow={this.state.searchShow}></Search>
                     </div>
                     <div className='H_right'>
                         <News messageNum={this.state.messageNum} isShow={this.state.messageShow} onChange={this.messageClick}></News>
