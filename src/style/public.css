@@ -13,4 +13,5 @@ a:hover{color: var(--active-text);}
     --default-text:#8590a6;
     --active-text:#444;
     --border-color:#ebebeb;
+    --message-color: #f55248
 }

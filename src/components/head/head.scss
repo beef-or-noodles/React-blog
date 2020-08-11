@@ -43,6 +43,10 @@
     }
     .H_right{
       display: flex;
+      align-items: center;
+      &>div{
+        margin-left: 30px;
+      }
     }
 
   }

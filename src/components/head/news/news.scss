@@ -1,0 +1,108 @@
+.H_news{
+  position: relative;
+  .H_icon{
+    font-size: 22px;
+    color: var(--default-text);
+    &:hover{
+      cursor: pointer;
+      color: var(--active-text);
+    }
+  }
+  .H_Num{
+    position: absolute;
+    font-size: 12px;
+    background-color: var(--message-color);
+    padding: 4px;
+    border-radius: 50%;
+    color: white;
+    top: -10px;
+    right: -10px;
+    width: 15px;
+    height: 15px;
+    transform: scale(.9);
+    text-align: center;
+  }
+  .H_menu{
+    position: absolute;
+    background: white;
+    width: 350px;
+    border-radius: 4px;
+    box-shadow: 0 5px 20px rgba(26,26,26,.1);
+    left: 50%;
+    top: 45px;
+    transform: translate(-50%,0);
+    .H_iconTop{
+      color: white;
+      position: absolute;
+      font-size: 22px;
+      top: -15px;
+      left: 50%;
+      transform: translate(-50%,0);
+    }
+    .H_n_top{
+      line-height: 48px;
+      font-size: 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .H_n_content{
+      height: 360px;
+      overflow: auto;
+      ul{
+        li{
+          padding: 15px;
+          display: flex;
+          &:hover{
+            cursor: pointer;
+            background-color: var(--background-color);
+          }
+          .n_photo{
+            img{
+              width: 40px;
+              height: 40px;
+              border-radius: 4px;
+            }
+          }
+          .n_con{
+            margin-left: 16px;
+            .n_name{
+              font-size: 15px;
+              .iconfont{
+                margin-left: 8px;
+                color: var(--theme-color);
+              }
+            }
+            .n_message{
+              font-size: 14px;
+              color: var(--default-text);
+              overflow : hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+            }
+          }
+        }
+      }
+
+    }
+    .H_n_footer{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      font-size: 15px;
+      color: var(--default-text);
+      border-top: 1px solid var(--border-color);
+      .H_n_f_left{
+        .iconfont{
+          margin-right: 8px;
+        }
+      }
+      &>div:hover{
+        cursor: pointer;
+        color: var(--active-text);
+      }
+    }
+  }
+}
