@@ -1,18 +1,28 @@
-import React from 'react'
-import {BrowserRouter as Router,Route} from 'react-router-dom'
-import Home from './pages/home.jsx'
-import Login from './pages/login.jsx'
-import List from './pages/list.jsx'
-import Content from './pages/content.jsx'
-import Comment from './pages/comment.jsx'
+import React, { Suspense, lazy } from 'react'
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
+import Layout from './components/layout/layout.jsx'
+import MyLoader from './components/loading/MyLoader/index'
+const Home = lazy(() => import('./pages/home/home.jsx'));
+const Login = lazy(() => import('./pages/login.jsx'));
+const List = lazy(() => import('./pages/list.jsx'));
+const Content = lazy(() => import('./pages/content.jsx'));
+const Comment = lazy(() => import('./pages/comment.jsx'));
+const Nopage = lazy(() => import('./pages/noPage.jsx'));
 function router(){
     return(
         <Router>
-           <Route path='/' component={Home}></Route>
-           <Route path='/Login' component={Login}></Route>
-           <Route path='/list/:id' component={List}></Route>
-           <Route path='/content/:id' component={Content}></Route>
-           <Route path='/comment' component={Comment}></Route>
+            <Layout>
+                <Suspense fallback={<div><MyLoader/></div>}>
+                    <Switch>
+                        <Route path='/' exact component={Home}></Route>
+                        <Route path='/login' component={Login}></Route>
+                        <Route path='/list/:id' component={List}></Route>
+                        <Route path='/content/:id' component={Content}></Route>
+                        <Route path='/comment' component={Comment}></Route>
+                        <Route component={Nopage}></Route>
+                    </Switch>
+                </Suspense>
+            </Layout>
         </Router>
     )
 }

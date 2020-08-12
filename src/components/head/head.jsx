@@ -55,22 +55,22 @@ export default class Head extends React.Component{
         return(
             <div className='header'>
                 <div className="container">
-                    <div className='H_left'>
-                        <div className='logo'>Ai-Lion</div>
-                        <ul className="navList">
-                            <li><a href='/'>首页</a></li>
-                            <li className="active"> <a href='/'>小站杂项</a></li>
-                            <li> <a href='/content/1'>大前端</a></li>
-                            <li> <a href='/list/1'>学习计划</a></li>
-                            <li> <a href='/comment'>留言板</a></li>
-                        </ul>
-                        <Search onChange={this.searchClick} isShow={this.state.searchShow}></Search>
+                        <div className='H_left'>
+                            <div className='logo'>Ai-Lion</div>
+                            <ul className="navList">
+                                <li><a href='/'>首页</a></li>
+                                <li className="active"> <a href='/'>小站杂项</a></li>
+                                <li> <a href='/content/1'>大前端</a></li>
+                                <li> <a href='/list/1'>学习计划</a></li>
+                                <li> <a href='/comment'>留言板</a></li>
+                            </ul>
+                            <Search onChange={this.searchClick} isShow={this.state.searchShow}></Search>
+                        </div>
+                        <div className='H_right'>
+                            <News messageNum={this.state.messageNum} isShow={this.state.messageShow} onChange={this.messageClick}></News>
+                            <HeadPhote isShow={this.state.photoShow} onChange={this.photoClick}></HeadPhote>
+                        </div>
                     </div>
-                    <div className='H_right'>
-                        <News messageNum={this.state.messageNum} isShow={this.state.messageShow} onChange={this.messageClick}></News>
-                        <HeadPhote isShow={this.state.photoShow} onChange={this.photoClick}></HeadPhote>
-                    </div>
-                </div>
             </div>
 
         )

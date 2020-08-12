@@ -1,6 +1,5 @@
 import React from 'react'
 import './search.scss'
-import Animate from '../../animate/animate'
 function SearchBox(props) {
     return (
         <div className='searchBox animate__animated animate__bounceIn'>
