@@ -4,26 +4,22 @@ import './layout.scss'
 export default class Layout extends React.Component {
     constructor(props){
         super(props)
-        this.downLoad = this.downLoad.bind(this)
     }
     componentDidMount() {
-        window.addEventListener("scroll", this.handleScroll);
-    }
-    // 监听滚动条变化
-    handleScroll=(event)=> {
-        //滚动条高度
-        let ctx = this;
-        let scrollTop = document.documentElement.scrollTop;  //滚动条滚动高度
-        let clientHeight = document.documentElement.clientHeight; //可视区域高度
-        let scrollHeight = document.documentElement.scrollHeight; //滚动内容高度
-        let down = scrollHeight - (scrollTop + clientHeight)
-        if(down === 0){
-            ctx.downLoad()
-            console.log("到底了");
+        window.onscroll = function(){
+            //变量scrollTop是滚动条滚动时，距离顶部的距离
+            var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+            //变量windowHeight是可视区的高度
+            var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+            //变量scrollHeight是滚动条的总高度
+            var scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
+            //滚动条到底部的条件
+            if(Math.round(scrollTop+windowHeight)==scrollHeight){
+                //写后台加载数据的函数
+                console.log("到底了");
+                console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+            }
         }
-    }
-    downLoad(){
-        // console.log(this.props.children);
     }
     render(){
         return (

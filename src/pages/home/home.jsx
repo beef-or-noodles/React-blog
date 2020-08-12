@@ -28,6 +28,10 @@ export default class Home extends React.Component {
             this.setState({loading:false,list:[1]})
         },1000)
     }
+    componentWillUnmount() {
+        console.log("销毁");
+    }
+
     add(){
         this.setState({loading:true})
         setTimeout(()=>{
