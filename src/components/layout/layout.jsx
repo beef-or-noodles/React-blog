@@ -5,7 +5,6 @@ export default class Layout extends React.Component {
     constructor(props){
         super(props)
         this.downLoad = this.downLoad.bind(this)
-        this.homeDom = React.createRef()
     }
     componentDidMount() {
         window.addEventListener("scroll", this.handleScroll);
@@ -24,9 +23,7 @@ export default class Layout extends React.Component {
         }
     }
     downLoad(){
-        //this.homeDom.add()
         // console.log(this.props.children);
-        // console.log(this.homeDom);
     }
     render(){
         return (
@@ -42,7 +39,7 @@ export default class Layout extends React.Component {
                                     <a href="/">热榜</a>
                                 </nav>
                             </div>
-                            <div ref={this.homeDom}>
+                            <div>
                                 {this.props.children}
                             </div>
                         </div>
