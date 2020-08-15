@@ -2,11 +2,13 @@ import React from 'react'
 import './home.scss'
 import ListItem from '../../components/listItem/index'
 import MyLoader from '../../components/loading/MyLoader/index'
+import store from '../../store/store'
+import {loadData} from "../../store/actions/load-actions";
 function NumberList(props) {
     const numbers = props.numbers;
-    const listItems = numbers.map((number) =>
+    const listItems = numbers.map((number,index) =>
         // 正确！key 应该在数组的上下文中被指定
-        <ListItem key={number.toString()}/>
+        <ListItem key={index}/>
     );
     return (
         <div>
@@ -24,9 +26,14 @@ export default class Home extends React.Component {
         this.add = this.add.bind(this)
     }
     componentDidMount() {
-        setTimeout(()=>{
-            this.setState({loading:false,list:[1]})
-        },1000)
+        this.setState({loading:false,list:[1,2,3,4,5]})
+        // 通过subscribe可以监控数据变化，并返回unsubscribe
+        store.subscribe(() =>{
+            let load = store.getState().load
+            if(load&&!this.state.loading){
+                this.add()
+            }
+        })
     }
     componentWillUnmount() {
         console.log("销毁");
@@ -35,10 +42,11 @@ export default class Home extends React.Component {
     add(){
         this.setState({loading:true})
         setTimeout(()=>{
-            let list = this.state.list
-            list.push(...[2])
+            let list = [...this.state.list]
+            list.push(2)
             this.setState({loading:false,list:list})
-        },1000)
+        },2000)
+        store.dispatch(loadData(false))
     }
 
     render() {

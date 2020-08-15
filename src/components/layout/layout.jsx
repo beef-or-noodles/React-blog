@@ -16,16 +16,9 @@ export default class Layout extends React.Component {
             //变量scrollHeight是滚动条的总高度
             var scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
             //滚动条到底部的条件
-            if(Math.round(scrollTop+windowHeight)==scrollHeight){
-                //写后台加载数据的函数
-                console.log("到底了");
+            if(Math.round(scrollTop+windowHeight) == scrollHeight){
+                // 到底部 修改全局load属性
                 store.dispatch(loadData(true))
-                console.log('数据更新',store.getState().load);
-            }
-            if(scrollTop == 0){
-                console.log("到头了");
-                store.dispatch(loadData(false))
-                console.log('数据更新',store.getState().load);
             }
         }
     }

@@ -9,7 +9,7 @@ export default class ListItem extends React.Component{
                 </h2>
                 <div className='list_con'>
                     <div className='list_pic'>
-                        <img src="https://pic2.zhimg.com/50/v2-665ce75c50c6101f7153304cb571b9c5_400x224.jpg" alt=""/>
+                        <img src="http://39.99.193.63:8889/artice/cover//1597488551809.gif" alt=""/>
                     </div>
                     <div className='list_abs'>
                         <div className='list_abs_title'>
