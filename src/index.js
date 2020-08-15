@@ -6,14 +6,6 @@ import './style/public.css'
 import './style/iconfont/iconfont.css'
 import "animate.css";
 
-import store from './store/store'
-import {addToCart} from "./store/actions/cart-actions";
-// 创建订阅函数
-let unsubscribe = store.subscribe(()=>{
-    console.log('数据',store.getState());
-})
-store.dispatch(addToCart('Coffe',1,500))
-unsubscribe()
 
 ReactDOM.render(
   <React.StrictMode>

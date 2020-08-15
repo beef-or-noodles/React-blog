@@ -1,6 +1,8 @@
 import React from 'react'
 import Head from '../head/head'
 import './layout.scss'
+import store from '../../store/store'
+import {loadData} from "../../store/actions/load-actions";
 export default class Layout extends React.Component {
     constructor(props){
         super(props)
@@ -17,7 +19,13 @@ export default class Layout extends React.Component {
             if(Math.round(scrollTop+windowHeight)==scrollHeight){
                 //写后台加载数据的函数
                 console.log("到底了");
-                console.log("距顶部"+scrollTop+"可视区高度"+windowHeight+"滚动条总高度"+scrollHeight);
+                store.dispatch(loadData(true))
+                console.log('数据更新',store.getState().load);
+            }
+            if(scrollTop == 0){
+                console.log("到头了");
+                store.dispatch(loadData(false))
+                console.log('数据更新',store.getState().load);
             }
         }
     }
