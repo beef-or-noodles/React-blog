@@ -4,6 +4,7 @@ import ListItem from '../../components/listItem/index'
 import MyLoader from '../../components/loading/MyLoader/index'
 import store from '../../store/store'
 import {loadData} from "../../store/actions/load-actions";
+import {withRouter} from 'react-router-dom'
 function NumberList(props) {
     const numbers = props.numbers;
     const listItems = numbers.map((number,index) =>
@@ -16,7 +17,7 @@ function NumberList(props) {
         </div>
     );
 }
-export default class Home extends React.Component {
+class Home extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -24,6 +25,10 @@ export default class Home extends React.Component {
             list:[]
         }
         this.add = this.add.bind(this)
+    }
+    // 路由改变触发
+    componentWillReceiveProps(){
+        this.add()
     }
     componentDidMount() {
         this.setState({loading:false,list:[1,2,3,4,5]})
@@ -58,3 +63,4 @@ export default class Home extends React.Component {
         )
     }
 }
+export default withRouter(Home)

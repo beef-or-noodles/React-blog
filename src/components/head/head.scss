@@ -24,7 +24,11 @@
           line-height: 50px;
           padding: 0 17px;
           font-size: 15px;
-          &.active a{
+          color: var(--default-text);
+          &:hover{
+            cursor: pointer;
+          }
+          &.active{
             position: relative;
             display: block;
             font-weight: 600;

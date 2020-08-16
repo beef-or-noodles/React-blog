@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react'
-import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Switch,withRouter} from 'react-router-dom'
 import Layout from './components/layout/layout.jsx'
 import MyLoader from './components/loading/MyLoader/index'
 const Home = lazy(() => import('./pages/home/home.jsx'));
@@ -14,7 +14,7 @@ function router(){
             <Layout>
                 <Suspense fallback={<div><MyLoader/></div>}>
                     <Switch>
-                        <Route path='/' exact component={Home}></Route>
+1                       <Route path='/home/:id?' exact component={Home}></Route>
                         <Route path='/login' component={Login}></Route>
                         <Route path='/list/:id' component={List}></Route>
                         <Route path='/content/:id' component={Content}></Route>
