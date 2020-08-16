@@ -26,10 +26,6 @@ class Home extends React.Component {
         }
         this.add = this.add.bind(this)
     }
-    // 路由改变触发
-    componentWillReceiveProps(){
-        this.add()
-    }
     componentDidMount() {
         this.setState({loading:false,list:[1,2,3,4,5]})
         // 通过subscribe可以监控数据变化，并返回unsubscribe
@@ -39,11 +35,11 @@ class Home extends React.Component {
                 this.add()
             }
         })
+        // 路由变化
+        this.props.history.listen(()=>{
+            this.add()
+        })
     }
-    componentWillUnmount() {
-        console.log("销毁");
-    }
-
     add(){
         this.setState({loading:true})
         setTimeout(()=>{
