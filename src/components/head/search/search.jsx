@@ -29,7 +29,7 @@ export default class Search extends React.Component{
     render(){
         return (
             <div className="search" onClick={ this.props.onChange}>
-                <input style={{width:this.props.isShow?230:160+'px'}} placeholder='请输入搜索内容' type="text"/>
+                <input placeholder='请输入搜索内容' type="text"/>
                 <button className='btn iconfont icon-sousuo'></button>
                 {this.props.isShow&&<SearchBox></SearchBox>}
             </div>

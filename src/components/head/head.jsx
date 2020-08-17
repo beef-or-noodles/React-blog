@@ -6,6 +6,8 @@ import News from './news/news'
 import store from '../../store/store'
 import {navChange} from "../../store/actions/nav-actions";
 import {withRouter} from 'react-router-dom'
+import {columnList} from "../../request/api/publicApi";
+
 // 头部导航
 function NavList(props){
     const list = props.navList;
@@ -61,6 +63,7 @@ class Head extends React.Component{
         this.navClick = this.navClick.bind(this)
     }
     componentDidMount() {
+        this.getList()
         document.onclick = ()=>{
             this.setState({
                 messageShow:false,
@@ -72,12 +75,20 @@ class Head extends React.Component{
             headerNav:store.getState().navIndex.headerNav
         })
     }
+    getList(){
+        columnList({type:2}).then(data=>{
+            console.log(data);
+            this.setState({
+                navList:data
+            })
+        })
+    }
     navClick(item,index){
         store.dispatch(navChange(index))
         this.setState({
             headerNav:index
         })
-        this.props.history.push(item.path)
+        this.props.history.push(`/home/${item.id}`)
     }
     messageClick(e){
         e.nativeEvent.stopImmediatePropagation()

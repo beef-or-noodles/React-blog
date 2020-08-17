@@ -32,9 +32,14 @@ class Home extends React.Component {
             list:[]
         }
     }
+    componentWillReceiveProps() {
+        console.log("更新");
+        console.log(this.props.match.params.id);
+        this.initData()
+    }
+
     componentDidMount() {
         this.initData()
-        this.getList()
         // 通过subscribe可以监控数据变化，并返回unsubscribe
         store.subscribe(() =>{
             let load = store.getState().load
@@ -43,47 +48,46 @@ class Home extends React.Component {
                 store.dispatch(loadData(false))
             }
         })
-        // 当前页面路由变化
-        this.props.history.listen((data)=>{
-            console.log("路由变化");
-            this.initData()
-            this.getList()
-        })
-
+        console.log("创建");
     }
     // 初始化数据
     initData(){
         this.setState({
             loading:true,
             paging:{
+                'columnId':this.props.match.params.id-0,
                 "pageNo":1,
                 "pageSize":5,
                 "total":0,
                 "type":1},
-            list:[]
+                list:[]
+        },()=>{
+            console.log("家在书记");
+            this.getList()
         })
     }
     getList(){
         let params = this.state.paging
         if(Math.ceil(params.total/params.pageSize) == params.pageNo){
-            console.log('到底了');
             return
         }
         this.setState({loading:true})
-        articleList(params).then(data=>{
-            console.log(data);
-            this.setState((state)=>{
-                return {
-                    loading:false,
-                    paging:{
-                        ...state.paging,
-                        pageNo:state.paging.pageNo++,
-                        total:data.total
-                    },
-                    list:[...state.list,...data.data]
+            articleList(params).then(data=>{
+                if(data.data){
+                    this.setState((state)=>{
+                        return {
+                            loading:false,
+                            paging:{
+                                ...state.paging,
+                                pageNo:state.paging.pageNo++,
+                                total:data.total
+                            },
+                            list:[...state.list,...data.data]
+                        }
+                    })
                 }
+
             })
-        })
     }
     render() {
         return (
