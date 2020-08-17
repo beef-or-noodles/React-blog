@@ -1,27 +1,72 @@
 import React from 'react'
 import './index.scss'
 export default class ListItem extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            check:false
+        }
+        this.change = this.change.bind(this)
+    }
+    change(){
+        let check = this.state.check
+        this.setState({
+            check: !check
+        })
+    }
     render(){
+        let item = this.props.item
+        var imgUrl = ''
+        if(item.imgurl){
+            imgUrl = item.imgurl.split(',')[0]
+        }
+        let check = this.state.check
         return (
             <div className="ListItem">
                 <h2 className='list_title'>
-                    <a href="/">为什么tiktok让扎克伯格如此恐慌？</a>
+                    <p>{item.articeTitle}</p>
                 </h2>
-                <div className='list_con'>
-                    <div className='list_pic'>
-                        <img src="http://39.99.193.63:8889/artice/cover//1597488551809.gif" alt=""/>
-                    </div>
-                    <div className='list_abs'>
-                        <div className='list_abs_title'>
-                            <p>
-                                汽车之家： [汽车之家 车酷文话] 在国外谷仓或者车库中发现废弃豪车的新闻可谓屡见不鲜，但同样的事件在国内却相当少见，而这次的故事恰巧发生在广州。 近日
-                                汽 车之家： [汽车之家 车酷文话] 在国外谷仓或者车库中发现废弃豪车的新闻可谓屡见不鲜，但同样的事件在国内却相当少见，而这次的故事恰巧发生在广州。 近日
-                            </p>
+                {!check?<div className='animate__animated animate__fadeInDown'>
+                    <div className='list_con'>
+                        {imgUrl&&<div className='list_pic'>
+                            <img src={imgUrl} alt={item.articeTitle}/>
+                        </div>}
+                        <div className='list_abs'>
+                            <div className='list_abs_title'>
+                                <p className='abs'>
+                                    {item.abstract}
+                                </p>
+                            </div>
+                            <p onClick={this.change} className="checkAll">阅读全文 <i className='iconfont icon-tubiao-'></i></p>
                         </div>
-                        <a href="/">阅读全文 <i className='iconfont icon-tubiao-'></i></a>
                     </div>
+                </div>:<div className='con_html animate__animated animate__fadeInLeft'>
+                    <div dangerouslySetInnerHTML = {{ __html: item.content }} />
+                </div>}
+                <div className='list_tool'>
+                    <button className='praise'>
+                        <i className='iconfont icon-zan'></i>赞同 {item.clickNumber}
+                    </button>
+                    <button className='comment'>
+                        <i className='iconfont icon-liuyan'></i>
+                        {item.commentNum} 条评论
+                    </button>
+                    <button className='share'>
+                        <i className='iconfont icon-fenxiang'></i>
+                        分享
+                    </button>
+                    <button className='coolect'>
+                        <i className='iconfont icon-shoucangxiao'></i>
+                        收藏
+                    </button>
+                    {
+                        check&&<button className='packup' onClick={this.change}>
+                            <i className='iconfont icon-sanjiaoshang'></i>
+                            收起
+                        </button>
+                    }
+
                 </div>
-                <div className='list_tool'></div>
             </div>
         )
     }

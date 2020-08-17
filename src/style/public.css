@@ -7,6 +7,8 @@ a{text-decoration: none;color: var(--default-text);}
 a:hover{color: var(--active-text);}
 :focus{outline:0}
 .container{width:1000px;margin: 0 auto}
+button{border: none;background: none}
+button:hover{opacity: .8;cursor: pointer}
 :root{
     --background-color: #f6f6f6;
     --theme-color: #0084ff;

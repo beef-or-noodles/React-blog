@@ -3,15 +3,17 @@
   border-bottom: 1px solid var(--border-color);
   .list_title{
     font-size: 18px;
-    a{
+    margin-bottom: 10px;
+    p{
       color: var(--active-text);
       &:hover{
         color: #175199;
+        cursor: pointer;
       }
     }
   }
   .list_con{
-    margin: 10px 0;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     .list_pic{
@@ -44,13 +46,65 @@
         line-height: 1.6;
         font-size: 15px;
       }
-      a{
-        color: #175199;
+      .checkAll{
+        color: var(--theme-color);
+        margin-top: 10px;
+        font-size: 14px;
+        display: inline-block;
         &:hover{
           color: var(--default-text);
         }
       }
     }
-
+  }
+  .list_tool{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--default-text);
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px 0;
+    background: white;
+    &.active{
+      position: sticky;
+      bottom:0;
+      box-shadow: 0 -1px 3px rgba(26,26,26,.1);
+    }
+    .praise{
+      color: #0084ff;
+      background: rgba(0,132,255,.1);
+      border-radius: 4px;
+      padding: 8px 12px;
+      i{
+        margin-right: 5px;
+      }
+      &.active{
+        background-color: var(--theme-color);
+        color: white;
+      }
+    }
+    .comment,.share,.coolect,.packup{
+      color: var(--default-text);
+      margin-left: 15px;
+      i{
+        margin-right: 5px;
+      }
+      &.active{
+        color: var(--theme-color);
+      }
+    }
+  }
+  .packup{
+    float: right;
+  }
+  .con_html{
+    overflow: auto;
+    img{
+      max-width: 100%;
+    }
+    .hljs{
+      font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    }
   }
 }
