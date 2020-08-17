@@ -40,10 +40,10 @@ export default class ListItem extends React.Component{
                             <p onClick={this.change} className="checkAll">阅读全文 <i className='iconfont icon-tubiao-'></i></p>
                         </div>
                     </div>
-                </div>:<div className='con_html animate__animated animate__fadeInLeft'>
+                </div>:<div className='con_html'>
                     <div dangerouslySetInnerHTML = {{ __html: item.content }} />
                 </div>}
-                <div className='list_tool'>
+                <div className={['list_tool',check?'active animate__animated animate__fadeInUp':''].join(' ')}>
                     <button className='praise'>
                         <i className='iconfont icon-zan'></i>赞同 {item.clickNumber}
                     </button>
