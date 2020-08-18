@@ -25,13 +25,20 @@
         display: flex;
         margin: 0 23px;
         white-space: nowrap;
-        li{
+        &>li{
           line-height: 50px;
-          padding: 0 10px;
+          padding: 0 15px;
           font-size: 15px;
           color: var(--default-text);
+          .iconfont{
+            font-size: 12px;
+            margin-left: 5px;
+          }
           &:hover{
             cursor: pointer;
+            .childBox{
+              display: block;
+            }
           }
           &.active{
             position: relative;
@@ -46,6 +53,28 @@
               bottom: 0;
               left: 0;
               background-color: var(--theme-color);
+            }
+          }
+          position: relative;
+          .childBox{
+            position: absolute;
+            background-color: white;
+            left: 50%;
+            transform: translate(-50%,0);
+            width: 150px;
+            text-align: center;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(26,26,26,.1);
+            font-size: 14px;
+            padding: 10px 0;
+            display: none;
+            li{
+              line-height: 40px;
+              color: var(--default-text);
+              font-weight: 500;
+              &:hover{
+                background-color: #f6f6f6;
+              }
             }
           }
         }

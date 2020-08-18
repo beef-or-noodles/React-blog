@@ -15,9 +15,15 @@ function NavList(props){
     const listItems = list.map((item,index) =>
         // 正确！key 应该在数组的上下文中被指定
         <li className={navIndex===index?'active':''}
-            onClick={()=>props.navClick(item,index)}
+            onClick={(e)=>props.navClick(e,item,index,1)}
             key={index}>
             {item.label}
+            {!!item.children.length&&<i className='iconfont icon-tubiao-'></i>}
+            {!!item.children.length&&<ul className='childBox'>
+                {item.children.map((ls,ind)=>{
+                     return <li onClick={(e)=>props.navClick(e,ls,index,2)} key={ind}>{ls.label}</li>
+                })}
+            </ul>}
         </li>
     );
     return (
@@ -57,29 +63,29 @@ class Head extends React.Component{
     }
     getList(){
         columnList({type:2}).then(data=>{
-            console.log(data);
             let list = data
             list.unshift({
                 label:'首页',
-                id:''
+                id:'',
+                children:[]
             })
             this.setState({
                 navList:data
             })
         })
     }
-    navClick(item,index){
+    navClick(e,item,index,type=1){
+        e.stopPropagation();
         if(item.href){
             window.open(item.href)
             return
         }
-        if(!item.children.length){
-            store.dispatch(navChange(index))
-            this.setState({
-                headerNav:index
-            })
-            this.props.history.push(`/home/${item.id}`)
-        }
+        if(!!item.children.length && type == 1)return
+        store.dispatch(navChange(index))
+        this.setState({
+            headerNav:index
+        })
+        this.props.history.push(`/home/${item.id}`)
     }
     messageClick(e){
         e.nativeEvent.stopImmediatePropagation()
