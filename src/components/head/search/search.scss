@@ -15,7 +15,6 @@
     border: none;
     background-color: var(--background-color);
     transition: all .3s ease;
-    width: 160px;
   }
   input::placeholder {
     font-size: 14px;
@@ -35,12 +34,12 @@
   }
   .searchBox{
     position: absolute;
-    width: 210px;
     background-color: white;
     left: 0;
     top: 40px;
     border-radius: 4px;
     padding: 10px 0;
+    width: 282px;
     box-shadow: 0 5px 20px rgba(26,26,26,.1);
     .S_top{
       border-bottom: 1px solid var(--border-color);

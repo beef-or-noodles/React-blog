@@ -18,7 +18,7 @@ export default class HeadPhoto extends React.Component{
         return (
             <div className='headphoto' onClick={this.props.onChange}>
                 <div className='Img'>
-                    <img src="http://www.ailion.cn/_nuxt/img/a79536b.jpg" alt="头像"/>
+                    <img src="http://39.99.193.63:8889/1576740450955.png" alt="头像"/>
                 </div>
                 {this.props.isShow&&<MessageBox></MessageBox>}
             </div>

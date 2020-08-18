@@ -11,6 +11,10 @@
     .layout_nav{
       border-bottom: 1px solid var(--border-color);
       overflow: hidden;
+      position: sticky;
+      top: 50px;
+      z-index: 50;
+      background-color: white;
       a{
         margin: 0 20px;
         line-height: 58px;

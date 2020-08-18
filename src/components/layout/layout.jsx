@@ -41,7 +41,9 @@ export default class Layout extends React.Component {
                             </div>
                         </div>
                         <div className='layout_right'>
-                            <div>123</div>
+                            <div>
+                                工具栏
+                            </div>
                         </div>
                     </div>
                 </div>

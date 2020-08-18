@@ -52,10 +52,11 @@ class Home extends React.Component {
     }
     // 初始化数据
     initData(){
+        let id = this.props.match.params.id || ''
         this.setState({
             loading:true,
             paging:{
-                'columnId':this.props.match.params.id-0,
+                'columnId':id,
                 "pageNo":1,
                 "pageSize":5,
                 "total":0,
@@ -68,26 +69,26 @@ class Home extends React.Component {
     }
     getList(){
         let params = this.state.paging
-        if(Math.ceil(params.total/params.pageSize) == params.pageNo){
+        if((params.pageSize*params.pageNo > Math.ceil(params.total/10)*10)&&params.pageNo!=1){
             return
         }
         this.setState({loading:true})
-            articleList(params).then(data=>{
-                if(data.data){
-                    this.setState((state)=>{
-                        return {
-                            loading:false,
-                            paging:{
-                                ...state.paging,
-                                pageNo:state.paging.pageNo++,
-                                total:data.total
-                            },
-                            list:[...state.list,...data.data]
-                        }
-                    })
-                }
+        articleList(params).then(data=>{
+            if(data.data){
+                this.setState((state)=>{
+                    return {
+                        loading:false,
+                        paging:{
+                            ...state.paging,
+                            pageNo:state.paging.pageNo++,
+                            total:data.total
+                        },
+                        list:[...state.list,...data.data]
+                    }
+                })
+            }
 
-            })
+        })
     }
     render() {
         return (

@@ -15,11 +15,16 @@
       .logo{
         font-size: 30px;
         font-weight: 500;
+        width: 105px;
         color: var(--theme-color);
+        &:hover{
+          cursor: pointer;
+        }
       }
       .navList{
         display: flex;
         margin: 0 23px;
+        white-space: nowrap;
         li{
           line-height: 50px;
           padding: 0 10px;

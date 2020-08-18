@@ -14,7 +14,7 @@ function NavList(props){
     let navIndex = props.headerNav
     const listItems = list.map((item,index) =>
         // 正确！key 应该在数组的上下文中被指定
-        <li className={navIndex==index?'active':''}
+        <li className={navIndex===index?'active':''}
             onClick={()=>props.navClick(item,index)}
             key={index}>
             {item.label}
@@ -35,27 +35,7 @@ class Head extends React.Component{
             searchShow:false,
             messageNum:3,
             headerNav:0,
-            navList:[{
-                value:1,
-                label:'首页',
-                path:'/home'
-            },{
-                value:2,
-                label:'小站杂项',
-                path:'/home/1'
-            },{
-                value:3,
-                label:'大前端',
-                path:'/home/2'
-            },{
-                value:4,
-                label:'学习计划',
-                path:'/home/3'
-            },{
-                value:5,
-                label:'留言板',
-                path:'/login'
-            }]
+            navList:[]
         }
         this.messageClick = this.messageClick.bind(this)
         this.photoClick = this.photoClick.bind(this)
@@ -78,17 +58,28 @@ class Head extends React.Component{
     getList(){
         columnList({type:2}).then(data=>{
             console.log(data);
+            let list = data
+            list.unshift({
+                label:'首页',
+                id:''
+            })
             this.setState({
                 navList:data
             })
         })
     }
     navClick(item,index){
-        store.dispatch(navChange(index))
-        this.setState({
-            headerNav:index
-        })
-        this.props.history.push(`/home/${item.id}`)
+        if(item.href){
+            window.open(item.href)
+            return
+        }
+        if(!item.children.length){
+            store.dispatch(navChange(index))
+            this.setState({
+                headerNav:index
+            })
+            this.props.history.push(`/home/${item.id}`)
+        }
     }
     messageClick(e){
         e.nativeEvent.stopImmediatePropagation()
@@ -120,11 +111,11 @@ class Head extends React.Component{
             <div className='header'>
                 <div className="container">
                         <div className='H_left'>
-                            <div className='logo'>Ai-Lion</div>
+                            <div className='logo' onClick={()=>{this.props.history.push(`/home`)}}>Ai-Lion</div>
                             <NavList navClick={this.navClick} navList={this.state.navList} headerNav={this.state.headerNav}></NavList>
-                            <Search onChange={this.searchClick} isShow={this.state.searchShow}></Search>
                         </div>
                         <div className='H_right'>
+                            <Search onChange={this.searchClick} isShow={this.state.searchShow}></Search>
                             <News messageNum={this.state.messageNum} isShow={this.state.messageShow} onChange={this.messageClick}></News>
                             <HeadPhote isShow={this.state.photoShow} onChange={this.photoClick}></HeadPhote>
                         </div>

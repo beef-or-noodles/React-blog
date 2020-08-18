@@ -9,7 +9,7 @@ function MessageBox(){
                 <ul>
                     <li>
                         <div className='n_photo'>
-                            <img src="http://www.ailion.cn/_nuxt/img/a79536b.jpg" alt="头像"/>
+                            <img src="http://39.99.193.63:8889/1576740450955.png" alt="头像"/>
                         </div>
                         <div className='n_con'>
                             <div className='n_name'>知乎小伙伴<i className="iconfont icon-guanfang_icon"></i></div>
