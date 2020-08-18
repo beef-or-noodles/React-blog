@@ -80,7 +80,9 @@ class Head extends React.Component{
             window.open(item.href)
             return
         }
-        if(!!item.children.length && type == 1)return
+        if(type == 1){
+            if(!!item.children.length)return
+        }
         store.dispatch(navChange(index))
         this.setState({
             headerNav:index

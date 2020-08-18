@@ -25,6 +25,7 @@ class Home extends React.Component {
         this.state = {
             loading:true,
             paging:{
+                "columnId":'',
                 "pageNo":1,
                 "pageSize":5,
                 "total":0,
@@ -32,10 +33,12 @@ class Home extends React.Component {
             list:[]
         }
     }
-    componentWillReceiveProps() {
-        console.log("更新");
-        console.log(this.props.match.params.id);
-        this.initData()
+    componentDidUpdate(prevProps) {
+        let oldId = prevProps.match.params.id
+        let newId = this.props.match.params.id
+        if (newId !== oldId){
+            this.initData()
+        }
     }
 
     componentDidMount() {
@@ -48,7 +51,6 @@ class Home extends React.Component {
                 store.dispatch(loadData(false))
             }
         })
-        console.log("创建");
     }
     // 初始化数据
     initData(){
@@ -63,7 +65,6 @@ class Home extends React.Component {
                 "type":1},
                 list:[]
         },()=>{
-            console.log("家在书记");
             this.getList()
         })
     }
