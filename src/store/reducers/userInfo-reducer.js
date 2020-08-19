@@ -3,7 +3,7 @@
  */
 import {USER_INFO} from "../actions/userInfo-actions";
 const initUserInfo = {
-    token:'xxxxxxxxx'
+    token:1
 }
 export function userReducer(state=initUserInfo,action){
     switch (action.type) {

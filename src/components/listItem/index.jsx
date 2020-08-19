@@ -1,17 +1,29 @@
 import React from 'react'
 import './index.scss'
+import {articLike} from '../../request/api/publicApi'
 export default class ListItem extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            check:false
+            check:false,
+            like:false
         }
         this.change = this.change.bind(this)
+        this.likeClick = this.likeClick.bind(this)
     }
     change(){
         let check = this.state.check
         this.setState({
             check: !check
+        })
+    }
+    likeClick(id){
+        if(this.state.like) return
+        articLike(id).then(data=>{
+            this.props.item.likeNumber = this.props.item.likeNumber+=1
+            this.setState({
+                like:true
+            })
         })
     }
     render(){
@@ -21,6 +33,7 @@ export default class ListItem extends React.Component{
             imgUrl = item.imgurl.split(',')[0]
         }
         let check = this.state.check
+        let like = this.state.like
         return (
             <div className="ListItem">
                 <h2 className='list_title'>
@@ -44,8 +57,8 @@ export default class ListItem extends React.Component{
                     <div dangerouslySetInnerHTML = {{ __html: item.content }} />
                 </div>}
                 <div className={['list_tool',check?'active animate__animated animate__fadeInUp':''].join(' ')}>
-                    <button className='praise'>
-                        <i className='iconfont icon-zan'></i>赞同 {item.clickNumber}
+                    <button className={['praise',like?'active':''].join(' ')} onClick={()=>this.likeClick(item.id)}>
+                        <i className='iconfont icon-zan'></i>赞同 {item.likeNumber}
                     </button>
                     <button className='comment'>
                         <i className='iconfont icon-liuyan'></i>

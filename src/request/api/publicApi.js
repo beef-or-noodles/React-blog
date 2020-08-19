@@ -9,3 +9,8 @@ export function articleList(params){
 export function columnList(params){
     return http.post('/queryColumn',params)
 }
+
+// 点赞
+export function articLike(id){
+    return http.post('/articeLike',{id:id})
+}
