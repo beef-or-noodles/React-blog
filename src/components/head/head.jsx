@@ -130,7 +130,7 @@ class Head extends React.Component{
             <div className='header'>
                 <div className="container">
                         <div className='H_left'>
-                            <div className='logo' onClick={()=>{this.props.history.push(`/home`)}}>Ai-Lion</div>
+                            <div className='logo'>Ai-Lion</div>
                             <NavList childClick={this.childClick} navClick={this.navClick} navList={this.state.navList} headerNav={this.state.headerNav}></NavList>
                         </div>
                         <div className='H_right'>
