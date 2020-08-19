@@ -8,7 +8,7 @@ import {userReducer} from './userInfo-reducer'
 
 const allReducer = {
     load:loadReducer,
-    navIndex:navReducer,
+    navData:navReducer,
     userInfo:userReducer
 }
 const rootReducer = combineReducers(allReducer)

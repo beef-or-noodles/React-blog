@@ -6,7 +6,6 @@ import store from '../../store/store'
 import {loadData} from "../../store/actions/load-actions";
 import {withRouter} from 'react-router-dom'
 import {articleList} from "../../request/api/publicApi";
-import axios from 'axios'
 function NumberList(props) {
     const numbers = props.numbers;
     const listItems = numbers.map((item,index) =>
@@ -70,7 +69,7 @@ class Home extends React.Component {
     }
     getList(){
         let params = this.state.paging
-        if((params.pageSize*params.pageNo > Math.ceil(params.total/10)*10)&&params.pageNo!=1){
+        if((params.pageSize*params.pageNo > Math.ceil(params.total/10)*10)&&params.pageNo!==1){
             return
         }
         this.setState({loading:true})

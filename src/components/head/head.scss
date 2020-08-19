@@ -72,6 +72,10 @@
               line-height: 40px;
               color: var(--default-text);
               font-weight: 500;
+              &.active{
+                background-color: #f6f6f6;
+                color: var(--theme-color);
+              }
               &:hover{
                 background-color: #f6f6f6;
               }

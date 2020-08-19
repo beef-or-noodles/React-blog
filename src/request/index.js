@@ -24,7 +24,7 @@ http.interceptors.request.use(function (config) {
 // 添加响应拦截器
 http.interceptors.response.use(function (response) {
     // 对响应数据做点什么
-    if(response.status == 200){
+    if(response.status === 200){
         return response.data.data
     }else{
         return response;

@@ -4,7 +4,7 @@ import Search from './search/search'
 import HeadPhote from './head_photo/index'
 import News from './news/news'
 import store from '../../store/store'
-import {navChange} from "../../store/actions/nav-actions";
+import {navChange,putChildIndex,putChildList} from "../../store/actions/nav-actions";
 import {withRouter} from 'react-router-dom'
 import {columnList} from "../../request/api/publicApi";
 
@@ -12,6 +12,7 @@ import {columnList} from "../../request/api/publicApi";
 function NavList(props){
     const list = props.navList;
     let navIndex = props.headerNav
+    let childIndex = store.getState().navData.childIndex
     const listItems = list.map((item,index) =>
         // 正确！key 应该在数组的上下文中被指定
         <li className={navIndex===index?'active':''}
@@ -21,7 +22,7 @@ function NavList(props){
             {!!item.children.length&&<i className='iconfont icon-tubiao-'></i>}
             {!!item.children.length&&<ul className='childBox'>
                 {item.children.map((ls,ind)=>{
-                     return <li onClick={(e)=>props.navClick(e,ls,index,2)} key={ind}>{ls.label}</li>
+                     return <li className={ls.id===childIndex?'active':''} onClick={(e)=>{props.navClick(e,ls,index,2);props.childClick(e,item,ls)}} key={ind}>{ls.label}</li>
                 })}
             </ul>}
         </li>
@@ -47,6 +48,7 @@ class Head extends React.Component{
         this.photoClick = this.photoClick.bind(this)
         this.searchClick = this.searchClick.bind(this)
         this.navClick = this.navClick.bind(this)
+        this.childClick = this.childClick.bind(this)
     }
     componentDidMount() {
         this.getList()
@@ -58,7 +60,7 @@ class Head extends React.Component{
             })
         }
         this.setState({
-            headerNav:store.getState().navIndex.headerNav
+            headerNav:store.getState().navData.headerNav
         })
     }
     getList(){
@@ -80,7 +82,10 @@ class Head extends React.Component{
             window.open(item.href)
             return
         }
-        if(type == 1){
+
+        if(type === 1){
+            store.dispatch(putChildList([]))
+            store.dispatch(putChildIndex(0))
             if(!!item.children.length)return
         }
         store.dispatch(navChange(index))
@@ -88,6 +93,12 @@ class Head extends React.Component{
             headerNav:index
         })
         this.props.history.push(`/home/${item.id}`)
+    }
+    childClick(e,item,ls){
+        e.stopPropagation()
+        if (!!ls.href) return
+        store.dispatch(putChildIndex(ls.id))
+        store.dispatch(putChildList(item.children))
     }
     messageClick(e){
         e.nativeEvent.stopImmediatePropagation()
@@ -120,7 +131,7 @@ class Head extends React.Component{
                 <div className="container">
                         <div className='H_left'>
                             <div className='logo' onClick={()=>{this.props.history.push(`/home`)}}>Ai-Lion</div>
-                            <NavList navClick={this.navClick} navList={this.state.navList} headerNav={this.state.headerNav}></NavList>
+                            <NavList childClick={this.childClick} navClick={this.navClick} navList={this.state.navList} headerNav={this.state.headerNav}></NavList>
                         </div>
                         <div className='H_right'>
                             <Search onChange={this.searchClick} isShow={this.state.searchShow}></Search>

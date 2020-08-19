@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react'
-import {BrowserRouter as Router,Route,Switch,withRouter} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 import Layout from './components/layout/layout.jsx'
 import MyLoader from './components/loading/MyLoader/index'
 const Home = lazy(() => import('./pages/home/home.jsx'));
