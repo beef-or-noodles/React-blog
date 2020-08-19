@@ -6,11 +6,17 @@ import './style/public.css'
 import './style/iconfont/iconfont.css'
 import "animate.css";
 
+import {Provider} from 'react-redux'
+import store from './store/store'
+import {persistor} from './store/store'
+import {PersistGate} from 'redux-persist/lib/integration/react';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+          <App />
+      </PersistGate>
+  </Provider>,
   document.getElementById('root')
 );
 

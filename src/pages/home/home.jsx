@@ -77,13 +77,14 @@ class Home extends React.Component {
         articleList(params).then(data=>{
             if(data.data){
                 this.setState((state)=>{
+                    let paging = {
+                        ...state.paging,
+                        pageNo:state.paging.pageNo+=1,
+                        total:data.total
+                    }
                     return {
                         loading:false,
-                        paging:{
-                            ...state.paging,
-                            pageNo:state.paging.pageNo++,
-                            total:data.total
-                        },
+                        paging:paging,
                         list:[...state.list,...data.data]
                     }
                 })
