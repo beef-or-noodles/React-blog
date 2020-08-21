@@ -83,8 +83,9 @@ class Layout extends React.Component {
                                 <div className='title'>小站统计</div>
                                 <Statistics></Statistics>
                             </div>
-                            <div className='rightBox'>
-                                <div className='title'><i className='iconfont icon-recommend'></i>推荐文章</div>
+                            <div className='rightBox recommend'>
+                                <i className='topicon iconfont icon-recommend'></i>
+                                <div className='title'>推荐文章</div>
                                 <Recommend></Recommend>
                             </div>
                             <div className='rightBox'>
