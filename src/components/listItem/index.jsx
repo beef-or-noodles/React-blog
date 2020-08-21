@@ -36,6 +36,7 @@ export default class ListItem extends React.Component{
         let like = this.state.like
         return (
             <div className="ListItem">
+                {!!item.recommend&&<i className='topicon iconfont icon-recommend'></i>}
                 <h2 className='list_title'>
                     <p>{item.articeTitle}</p>
                 </h2>

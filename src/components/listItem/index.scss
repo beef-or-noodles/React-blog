@@ -1,6 +1,14 @@
 .ListItem{
   padding: 20px;
   border-bottom: 1px solid var(--border-color);
+  position: relative;
+  .topicon{
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 50px;
+    color: var(--message-color);
+  }
   .list_title{
     font-size: 18px;
     margin-bottom: 10px;
