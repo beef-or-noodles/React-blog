@@ -1,0 +1,18 @@
+.tagList{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 15px;
+  color: var(--default-text);
+  justify-content: space-between;
+  li{
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+    color: white;
+    margin-bottom: 5px;
+    &:hover{
+      cursor: pointer;
+      opacity: .8;
+    }
+  }
+}

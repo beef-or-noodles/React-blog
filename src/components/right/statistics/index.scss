@@ -1,0 +1,22 @@
+.right_system{
+  padding: 10px 15px;
+  li{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    color: var(--default-text);
+    font-size: 14px;
+    p{
+      flex: 1;
+      i{
+        margin-right: 5px;
+      }
+    }
+    .num{
+      border-radius: 4px;
+      background-color: var(--background-color);
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+  }
+}

@@ -14,3 +14,15 @@ export function columnList(params){
 export function articLike(id){
     return http.post('/articeLike',{id:id})
 }
+/*统计数据*/
+export function queryChart(){
+    return http.post('/queryChart')
+}
+/*查询所有标签*/
+export function queryAllTag(){
+    return http.post('/queryAllTag')
+}
+/*查询推荐文章/queryRecommend*/
+export function queryRecommend(){
+    return http.post('/queryRecommend')
+}
