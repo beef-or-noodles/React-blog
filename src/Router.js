@@ -14,7 +14,8 @@ function router(){
             <Layout>
                 <Suspense fallback={<div><MyLoader/></div>}>
                     <Switch>
-1                       <Route path='/home/:id?' exact component={Home}></Route>
+                        <Route path='/' exact component={Home}></Route>
+                        <Route path='/home/:id?' exact component={Home}></Route>
                         <Route path='/login' exact component={Login}></Route>
                         <Route path='/list/:id' exact component={List}></Route>
                         <Route path='/content/:id' exact component={Content}></Route>
