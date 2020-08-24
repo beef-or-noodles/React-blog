@@ -1,5 +1,6 @@
 import React from 'react'
 import './search.scss'
+import {withRouter} from "react-router";
 function SearchBox(props) {
     return (
         <div className='searchBox animate__animated animate__bounceIn'>
@@ -25,14 +26,46 @@ function SearchBox(props) {
         </div>
     )
 }
-export default class Search extends React.Component{
+class Search extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            value:''
+        }
+        this.search = this.search.bind(this)
+        this.enterKey = this.enterKey.bind(this)
+    }
+    inputChange(e){
+        this.setState({value: e.target.value});
+    }
+    enterKey(e){
+        var evt = window.event || e;
+        if (evt.keyCode === 13) {
+            this.search()
+        }
+    }
+    search(){
+        let value = this.state.value
+        if(value){
+            this.props.closeAll()
+            this.props.history.push({pathname:'/search',state:{wd:value}})
+        }
+
+    }
     render(){
         return (
             <div className="search" onClick={ this.props.onChange}>
-                <input style={{width:this.props.isShow?230:160+'px'}} placeholder='请输入搜索内容' type="text"/>
-                <button className='btn iconfont icon-sousuo'></button>
+                <input style={{width:this.props.isShow?230:160+'px'}}
+                       placeholder='请输入搜索内容'
+                       type="text"
+                       value={this.state.value}
+                       onChange={(e)=>this.inputChange(e)}
+                       onKeyDown={(e)=>this.enterKey(e)}
+            />
+                <button onClick={()=>this.search()} className='btn iconfont icon-sousuo'></button>
                 {this.props.isShow&&<SearchBox></SearchBox>}
             </div>
         )
     }
 }
+export default withRouter(Search)

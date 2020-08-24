@@ -49,18 +49,22 @@ class Head extends React.Component{
         this.searchClick = this.searchClick.bind(this)
         this.navClick = this.navClick.bind(this)
         this.childClick = this.childClick.bind(this)
+        this.closeAll = this.closeAll.bind(this)
     }
     componentDidMount() {
         this.getList()
         document.onclick = ()=>{
-            this.setState({
-                messageShow:false,
-                photoShow:false,
-                searchShow:false,
-            })
+            this.closeAll()
         }
         this.setState({
             headerNav:store.getState().navData.headerNav
+        })
+    }
+    closeAll(){
+        this.setState({
+            messageShow:false,
+            photoShow:false,
+            searchShow:false,
         })
     }
     getList(){
@@ -134,7 +138,7 @@ class Head extends React.Component{
                             <NavList childClick={this.childClick} navClick={this.navClick} navList={this.state.navList} headerNav={this.state.headerNav}></NavList>
                         </div>
                         <div className='H_right'>
-                            <Search onChange={this.searchClick} isShow={this.state.searchShow}></Search>
+                            <Search closeAll={this.closeAll} onChange={this.searchClick} isShow={this.state.searchShow}></Search>
                             <News messageNum={this.state.messageNum} isShow={this.state.messageShow} onChange={this.messageClick}></News>
                             <HeadPhote isShow={this.state.photoShow} onChange={this.photoClick}></HeadPhote>
                         </div>

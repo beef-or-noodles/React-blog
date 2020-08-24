@@ -26,3 +26,7 @@ export function queryAllTag(){
 export function queryRecommend(){
     return http.post('/queryRecommend')
 }
+/* 搜索 */
+export function searchArticle(name){
+    return http.post('/searchArtice',{recycle: 1,searchName: name})
+}

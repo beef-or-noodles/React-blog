@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 import Layout from './components/layout/layout.jsx'
 import MyLoader from './components/loading/MyLoader/index'
 const Home = lazy(() => import('./pages/home/home.jsx'));
+const Search = lazy(() => import('./pages/search/search.jsx'));
 const Login = lazy(() => import('./pages/login.jsx'));
 const List = lazy(() => import('./pages/list.jsx'));
 const Content = lazy(() => import('./pages/content.jsx'));
@@ -16,6 +17,7 @@ function router(){
                     <Switch>
                         <Route path='/' exact component={Home}></Route>
                         <Route path='/home/:id?' exact component={Home}></Route>
+                        <Route path='/search' exact component={Search}></Route>
                         <Route path='/login' exact component={Login}></Route>
                         <Route path='/list/:id' exact component={List}></Route>
                         <Route path='/content/:id' exact component={Content}></Route>
