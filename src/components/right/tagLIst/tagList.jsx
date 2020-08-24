@@ -31,7 +31,7 @@ export default class tagList extends React.Component {
             <ul className='tagList'>
                 {
                     list.map(item=>{
-                        let bg = this.getRandomColor()
+                       let bg = this.getRandomColor()
                        return <li style={{'backgroundColor':bg}} key={item.id}>{item.tag_name}</li>
                     })
                 }

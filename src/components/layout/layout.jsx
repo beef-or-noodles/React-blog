@@ -14,10 +14,10 @@ class Layout extends React.Component {
         super(props)
         this.state = {
             childList: [],
-            childIndex: 0
+            childIndex: 0,
         }
+        this.goTop = this.goTop.bind(this)
     }
-
     componentDidMount() {
         window.onscroll = function () {
             //变量scrollTop是滚动条滚动时，距离顶部的距离
@@ -52,6 +52,9 @@ class Layout extends React.Component {
         store.dispatch(putChildIndex(item.id))
         this.props.history.push(`/home/${item.id}`)
     }
+    goTop(){
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }
 
     render() {
         let childList = this.state.childList
@@ -59,6 +62,9 @@ class Layout extends React.Component {
         return (
             <div>
                 <Head></Head>
+                <div onClick={this.goTop} className='goTop animate__animated animate__fadeInUpBig'>
+                    <i className="iconfont icon-xiangshang"></i>
+                </div>
                 <div className='layout'>
                     <div className="container layout_content">
                         <div className='layout_left'>

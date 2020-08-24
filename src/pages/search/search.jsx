@@ -4,6 +4,7 @@ import ListItem from '../../components/listItem/index'
 import MyLoader from '../../components/loading/MyLoader/index'
 import {withRouter} from 'react-router-dom'
 import {searchArticle} from "../../request/api/publicApi";
+import NoData from '../../components/noData/noData'
 function NumberList(props) {
     const numbers = props.numbers;
     const listItems = numbers.map((item,index) =>
@@ -12,7 +13,7 @@ function NumberList(props) {
     );
     return (
         <div>
-            {listItems}
+            {!!numbers.length?listItems:<NoData></NoData>}
         </div>
     );
 }
