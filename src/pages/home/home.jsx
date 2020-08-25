@@ -31,6 +31,7 @@ class Home extends React.Component {
                 "type":1},
             list:[]
         }
+        this.unsubscribe = null
     }
     componentDidUpdate(prevProps) {
         let oldId = prevProps.match.params.id
@@ -39,11 +40,11 @@ class Home extends React.Component {
             this.initData()
         }
     }
-
     componentDidMount() {
+        console.log("初始化");
         this.initData()
         // 通过subscribe可以监控数据变化，并返回unsubscribe
-        store.subscribe(() =>{
+        this.unsubscribe = store.subscribe(() =>{
             let load = store.getState().load
             if(load&&!this.state.loading){
                 this.getList()
@@ -51,8 +52,13 @@ class Home extends React.Component {
             }
         })
     }
+    componentWillUnmount() {
+        this.unsubscribe()
+    }
+
     // 初始化数据
     initData(){
+        console.log("111111111");
         let id = this.props.match.params.id || ''
         this.setState({
             loading:true,
@@ -68,24 +74,26 @@ class Home extends React.Component {
         })
     }
     getList(){
+        console.log("222");
         let params = this.state.paging
         if((params.pageSize*params.pageNo > Math.ceil(params.total/10)*10)&&params.pageNo!==1){
             return
         }
         this.setState({loading:true})
         articleList(params).then(data=>{
+            console.log("请求");
             if(data.data){
-                this.setState((state)=>{
-                    let paging = {
-                        ...state.paging,
-                        pageNo:state.paging.pageNo+=1,
-                        total:data.total
-                    }
-                    return {
-                        loading:false,
-                        paging:paging,
-                        list:[...state.list,...data.data]
-                    }
+                console.log("进入判断");
+                let state = this.state
+                let paging = {
+                    ...state.paging,
+                    pageNo:state.paging.pageNo+=1,
+                    total:data.total
+                }
+                this.setState({
+                    loading:false,
+                    paging:paging,
+                    list:[...state.list,...data.data]
                 })
             }
 

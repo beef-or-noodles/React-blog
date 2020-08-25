@@ -14,10 +14,14 @@ export function userReducer(state=initUserInfo,action){
             }
         }
         case SET_WD:{
-            console.log(state);
+            let list = state.wd
+            let value = action.payload
+            if(!list.includes(value)){
+                list.push(value)
+            }
             return {
                 ...state,
-                wd:[...state.wd,action.payload]
+                wd:[...list]
             }
         }
         case DELETE_WD:{

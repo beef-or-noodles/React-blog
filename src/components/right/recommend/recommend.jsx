@@ -21,7 +21,7 @@ export default class Recommend extends React.Component {
             <ul className='Recommend'>
                 {
                     list.map(item=>{
-                        return <li key={item.id}><a href='#'>{item.articeTitle}</a></li>
+                        return <li key={item.id}><a target='_blank' href={'/content/'+item.id}>{item.articeTitle}</a></li>
                     })
                 }
             </ul>

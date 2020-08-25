@@ -38,7 +38,6 @@
     left: 0;
     top: 40px;
     border-radius: 4px;
-    padding: 10px 0;
     width: 282px;
     box-shadow: 0 5px 20px rgba(26,26,26,.1);
     .S_top{
@@ -68,6 +67,7 @@
     }
     .H_history{
       color: var(--active-text);
+      margin: 15px 0;
       .S_top{
         &>span{
           float: right;

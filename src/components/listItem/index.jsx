@@ -1,6 +1,8 @@
 import React from 'react'
 import './index.scss'
 import {articLike} from '../../request/api/publicApi'
+import {Link} from "react-router-dom";
+
 export default class ListItem extends React.Component{
     constructor(props){
         super(props)
@@ -38,7 +40,9 @@ export default class ListItem extends React.Component{
             <div className="ListItem">
                 {!!item.recommend&&<i className='topicon iconfont icon-recommend'></i>}
                 <h2 className='list_title'>
-                    <p>{item.articeTitle}</p>
+                    <Link to={'/content/'+item.id} target="_blank">
+                        <p>{item.articeTitle}</p>
+                    </Link>
                 </h2>
                 {!check?<div className='animate__animated animate__fadeInDown'>
                     <div className='list_con'>

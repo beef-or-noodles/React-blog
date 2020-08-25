@@ -7,7 +7,7 @@ import {setWd,deleteWd,empytWd} from "../../../store/actions/userInfo-actions";
 function SearchBox(props) {
     return (
         <div className='searchBox animate__animated animate__bounceIn'>
-            <div>
+            {/*<div>
                 <div className="S_top">小站热搜</div>
                 <ul>
                     <li><a href="/">《以家之名》开播<i className='iconfont icon-remen'></i></a></li>
@@ -15,7 +15,7 @@ function SearchBox(props) {
                     <li><a href="/">黎巴嫩政府全体辞职<i className='iconfont icon-remen'></i></a></li>
                     <li><a href="/">猪肉价格上涨 85.7%<i className='iconfont icon-remen'></i></a></li>
                 </ul>
-            </div>
+            </div>*/}
             {
                 !!props.list.length&&<div className='H_history'>
                     <div className="S_top">
@@ -25,7 +25,7 @@ function SearchBox(props) {
                     <ul>
                         {
                             props.list.map((item,index)=>{
-                                return <li key={index}>{item}<i onClick={()=>props.delete(item)} className='iconfont icon-cuo'></i></li>
+                                return <li key={index}><span onClick={()=>props.click(item)}>{item}</span><i onClick={()=>props.delete(item)} className='iconfont icon-cuo'></i></li>
                             })
                         }
                     </ul>
@@ -46,6 +46,7 @@ class Search extends React.Component{
         this.enterKey = this.enterKey.bind(this)
         this.delete_wd = this.delete_wd.bind(this)
         this.empyt = this.empyt.bind(this)
+        this.click_search = this.click_search.bind(this)
     }
     componentDidMount() {
         let wdList = store.getState().userInfo.wd
@@ -73,18 +74,30 @@ class Search extends React.Component{
         },0)
     }
     empyt(){
-        console.log('清空');
         store.dispatch(empytWd())
         this.setState({
             wdList:[]
+        })
+    }
+    click_search(wd){
+        this.setState((state)=>{
+            return {
+                value:wd
+            }
+        },()=>{
+            this.search()
         })
     }
     search(){
         let value = this.state.value
         if(value){
             this.setState((state)=>{
+                let list = state.wdList
+                if(!list.includes(value)){
+                    list.push(value)
+                }
                 return {
-                    wdList:[...state.wdList,value]
+                    wdList:[...list]
                 }
             })
             this.props.closeAll()
@@ -107,7 +120,7 @@ class Search extends React.Component{
                        onKeyDown={(e)=>this.enterKey(e)}
             />
                 <button onClick={()=>this.search()} className='btn iconfont icon-sousuo'></button>
-                {this.props.isShow&&<SearchBox empyt={this.empyt} delete={this.delete_wd} list={wdList}></SearchBox>}
+                {this.props.isShow&&<SearchBox click={this.click_search} empyt={this.empyt} delete={this.delete_wd} list={wdList}></SearchBox>}
             </div>
         )
     }

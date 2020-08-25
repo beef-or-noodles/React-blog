@@ -30,3 +30,7 @@ export function queryRecommend(){
 export function searchArticle(name){
     return http.post('/searchArtice',{recycle: 1,searchName: name})
 }
+/*文章详情*/
+export function articeInfo(id){
+    return http.post('/articeInfo',{id})
+}

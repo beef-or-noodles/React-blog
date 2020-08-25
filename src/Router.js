@@ -6,7 +6,7 @@ const Home = lazy(() => import('./pages/home/home.jsx'));
 const Search = lazy(() => import('./pages/search/search.jsx'));
 const Login = lazy(() => import('./pages/login.jsx'));
 const List = lazy(() => import('./pages/list.jsx'));
-const Content = lazy(() => import('./pages/content.jsx'));
+const Content = lazy(() => import('./pages/content/content.jsx'));
 const Comment = lazy(() => import('./pages/comment.jsx'));
 const Nopage = lazy(() => import('./pages/noPage.jsx'));
 function router(){

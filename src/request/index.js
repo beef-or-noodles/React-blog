@@ -6,7 +6,7 @@ import store from '../store/store'
 // 创建实例
 var http = axios.create({
     baseURL: process.env.REACT_APP_HTTP_URL,
-    timeout: 3000
+    timeout: 10000
 })
 // 添加请求拦截器
 http.interceptors.request.use(function (config) {
