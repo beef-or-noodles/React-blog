@@ -41,7 +41,6 @@ class Home extends React.Component {
         }
     }
     componentDidMount() {
-        console.log("初始化");
         this.initData()
         // 通过subscribe可以监控数据变化，并返回unsubscribe
         this.unsubscribe = store.subscribe(() =>{
@@ -58,7 +57,6 @@ class Home extends React.Component {
 
     // 初始化数据
     initData(){
-        console.log("111111111");
         let id = this.props.match.params.id || ''
         this.setState({
             loading:true,
@@ -74,16 +72,13 @@ class Home extends React.Component {
         })
     }
     getList(){
-        console.log("222");
         let params = this.state.paging
         if((params.pageSize*params.pageNo > Math.ceil(params.total/10)*10)&&params.pageNo!==1){
             return
         }
         this.setState({loading:true})
         articleList(params).then(data=>{
-            console.log("请求");
             if(data.data){
-                console.log("进入判断");
                 let state = this.state
                 let paging = {
                     ...state.paging,
