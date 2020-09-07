@@ -41,7 +41,7 @@ export default class ListItem extends React.Component{
                 {!!item.recommend&&<i className='topicon iconfont icon-recommend'></i>}
                 <h2 className='list_title'>
                     <Link to={'/content/'+item.id} target="_blank">
-                        <p>{item.articeTitle}</p>
+                        <p dangerouslySetInnerHTML = {{ __html: item.articeTitle }}></p>
                     </Link>
                 </h2>
                 {!check?<div className='animate__animated animate__fadeInDown'>
@@ -51,9 +51,7 @@ export default class ListItem extends React.Component{
                         </div>}
                         <div className='list_abs'>
                             <div className='list_abs_title'>
-                                <p className='abs'>
-                                    {item.abstract}
-                                </p>
+                                <p className='abs' dangerouslySetInnerHTML = {{ __html: item.abstract }}></p>
                             </div>
                             <p onClick={this.change} className="checkAll">阅读全文 <i className='iconfont icon-tubiao-'></i></p>
                         </div>

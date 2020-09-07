@@ -17,6 +17,20 @@ function NumberList(props) {
         </div>
     );
 }
+
+// 关键字高亮显示
+function hightKeyWord(text,keyword){
+    var find = text.split(keyword)
+    let length = find.length
+    let str = ''
+    if (length == 1) return text
+    for(let i in find){
+        if(i<length-1){
+            str+=`${find[i]}<span style="color:red;">${keyword}</span>`
+        }
+    }
+    return str
+}
 class Search extends React.Component {
     constructor(props){
         super(props)
@@ -53,9 +67,18 @@ class Search extends React.Component {
         let name = this.state.name
         searchArticle(name).then(data=>{
             if(data){
+                let list = [...data]
+                let keyword = this.state.name
+                list.forEach(item=>{
+                    console.log(item['articeTitle'],keyword);
+                    console.log(hightKeyWord(item['articeTitle'],keyword));
+                    item['articeTitle'] = hightKeyWord(item['articeTitle'],keyword)
+                    item['abstract'] = hightKeyWord(item['abstract'],keyword)
+                })
+                console.log(list);
                 this.setState({
                         loading:false,
-                        list:[...data]
+                        list:[...list]
                     })
             }
         })
