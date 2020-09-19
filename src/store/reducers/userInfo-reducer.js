@@ -1,16 +1,19 @@
 /**
  * Created by Administrator on 2020/8/17.
  */
-import {USER_INFO,SET_WD,DELETE_WD,EMPYT_WD} from "../actions/userInfo-actions";
+import {USER_INFO,SET_WD,DELETE_WD,EMPYT_WD,LOGIN} from "../actions/userInfo-actions";
 const initUserInfo = {
-    token:1,
+    login:false, // login 弹窗显示
+    info:{},
     wd:[]
 }
 export function userReducer(state=initUserInfo,action){
     switch (action.type) {
         case USER_INFO:{
+            let data = {...state}
+            data.info = {...action.payload}
             return {
-                ...state,...action.payload
+                ...data
             }
         }
         case SET_WD:{
@@ -37,6 +40,12 @@ export function userReducer(state=initUserInfo,action){
             return {
                 ...state,
                 wd:action.payload
+            }
+        }
+        case LOGIN:{
+            return {
+                ...state,
+                login:action.payload
             }
         }
         default:

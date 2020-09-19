@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import Login from './pages/login/login'
+
 import * as serviceWorker from './serviceWorker';
 import './style/public.css'
 import './style/iconfont/iconfont.css'
@@ -15,6 +17,7 @@ ReactDOM.render(
   <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
           <App />
+          <Login></Login>
       </PersistGate>
   </Provider>,
   document.getElementById('root')

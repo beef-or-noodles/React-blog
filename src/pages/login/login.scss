@@ -1,0 +1,56 @@
+.loginbg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .box{
+    width: 400px;
+    background: white;
+    box-shadow: 0px 0px 5px white;
+    border-radius: 4px;
+    .title{
+      text-align: center;
+      display: block;
+      font-weight: bold;
+      padding: 15px ;
+      font-size: 20px;
+      color: var(--theme-color);
+      border-bottom: 1px solid var(--border-color);
+      .iconfont{
+        float: right;
+        font-size: 22px;
+        color: var(--active-text);
+      }
+    }
+    .inputBox{
+      padding: 15px;
+      .from-item{
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+        margin-top: 20px;
+        .txt{
+          color: var(--active-text);
+          font-size: 14px;
+          margin-bottom: 10px;
+        }
+        input{
+          border: none;
+        }
+      }
+      .btn{
+        width: 100%;
+        line-height: 40px;
+        background: var(--theme-color);
+        border-radius: 4px;
+        color: white;
+        margin-top: 50px;
+      }
+    }
+  }
+}

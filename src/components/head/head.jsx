@@ -7,6 +7,7 @@ import store from '../../store/store'
 import {navChange,putChildIndex,putChildList} from "../../store/actions/nav-actions";
 import {withRouter} from 'react-router-dom'
 import {columnList} from "../../request/api/publicApi";
+import {loadData} from "../../store/actions/load-actions";
 
 // 头部导航
 function NavList(props){
@@ -42,8 +43,11 @@ class Head extends React.Component{
             searchShow:false,
             messageNum:3,
             headerNav:0,
-            navList:[]
+            navList:[],
+            info:{},
+            isLogin: false
         }
+        this.unsubscribe = null
         this.messageClick = this.messageClick.bind(this)
         this.photoClick = this.photoClick.bind(this)
         this.searchClick = this.searchClick.bind(this)
@@ -51,13 +55,27 @@ class Head extends React.Component{
         this.childClick = this.childClick.bind(this)
         this.closeAll = this.closeAll.bind(this)
     }
+    componentWillUnmount() {
+        this.unsubscribe()
+    }
     componentDidMount() {
         this.getList()
         document.onclick = ()=>{
             this.closeAll()
         }
+        this.unsubscribe = store.subscribe(() =>{
+            let info = store.getState().userInfo.info
+            let isLogin = false
+            if(info.hasOwnProperty('id')){
+                isLogin = true
+            }
+            this.setState({
+                info: info,
+                isLogin
+            })
+        })
         this.setState({
-            headerNav:store.getState().navData.headerNav
+            headerNav:store.getState().navData.headerNav,
         })
     }
     closeAll(){
@@ -140,7 +158,7 @@ class Head extends React.Component{
                         <div className='H_right'>
                             <Search closeAll={this.closeAll} onChange={this.searchClick} isShow={this.state.searchShow}></Search>
                             <News messageNum={this.state.messageNum} isShow={this.state.messageShow} onChange={this.messageClick}></News>
-                            <HeadPhote isShow={this.state.photoShow} onChange={this.photoClick}></HeadPhote>
+                            <HeadPhote isLogin={this.state.isLogin} info={this.state.info} isShow={this.state.photoShow} onChange={this.photoClick}></HeadPhote>
                         </div>
                     </div>
             </div>

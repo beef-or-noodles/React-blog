@@ -26,7 +26,7 @@ class Home extends React.Component {
             paging:{
                 "columnId":'',
                 "pageNo":1,
-                "pageSize":5,
+                "pageSize":8,
                 "total":0,
                 "type":1},
             list:[]
@@ -63,7 +63,7 @@ class Home extends React.Component {
             paging:{
                 'columnId':id,
                 "pageNo":1,
-                "pageSize":5,
+                "pageSize":8,
                 "total":0,
                 "type":1},
                 list:[]

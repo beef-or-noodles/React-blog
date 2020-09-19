@@ -34,3 +34,8 @@ export function searchArticle(name){
 export function articeInfo(id){
     return http.post('/articeInfo',{id})
 }
+
+/* 登录 */
+export function postLogin(params) {
+    return http.post('/login', params)
+}
