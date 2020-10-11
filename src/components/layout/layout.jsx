@@ -9,6 +9,7 @@ import CopyRight from '../right/copyRight/copyRight'
 import Statistics from '../right/statistics/statistics'
 import TagList from '../right/tagLIst/tagList'
 import Recommend from '../right/recommend/recommend'
+import Banner from  '../banner/index'
 class Layout extends React.Component {
     constructor(props) {
         super(props)
@@ -66,6 +67,9 @@ class Layout extends React.Component {
                     <i className="iconfont icon-xiangshang"></i>
                 </div>
                 <div className='layout'>
+                    <div className='banner'>
+                        <Banner></Banner>
+                    </div>
                     <div className="container layout_content">
                         <div className='layout_left'>
                             <div className='layout_nav'>

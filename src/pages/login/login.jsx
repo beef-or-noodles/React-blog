@@ -9,7 +9,7 @@ class Login extends React.Component {
         this.state = {
             userName:'',
             passWord:'',
-            islogin:true,
+            islogin:false, // 是否必须登录
             info:{}
         }
         this.userChange = this.userChange.bind(this);
